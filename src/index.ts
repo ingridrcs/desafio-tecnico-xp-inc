@@ -1,14 +1,10 @@
-import express from 'express';
-import { StatusCodes } from 'http-status-codes';
-import 'express-async-errors';
-const app = express();
+import app from './app';
 
-app.use(express.json());
 
-const PORT = 8000;
+const PORT = 3000;
 
 app.get('/', (req, res) => {
-  res.status(StatusCodes.OK).send('Express + TypeScript')
+  res.send('Express + TypeScript')
 });
 
 app.listen(PORT, () => {
