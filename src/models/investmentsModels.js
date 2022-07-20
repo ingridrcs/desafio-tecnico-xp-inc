@@ -1,4 +1,4 @@
-import connection from "../db/connection";
+const connection = require('../db/connection');
 
 const addPurchase = async (codAtivo, qtdeAtivo) => {
   const row = await connection.execute(
@@ -6,4 +6,4 @@ const addPurchase = async (codAtivo, qtdeAtivo) => {
   return row;
 }
 
-export default addPurchase;
+module.exports = addPurchase;

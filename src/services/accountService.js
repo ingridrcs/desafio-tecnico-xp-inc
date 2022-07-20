@@ -1,5 +1,5 @@
 const getCodCliente = require('../models/accountModel');
-//import addAccount from "../models/accountModel";
+
 
 // const addAccountService = async (account:IAccount):Promise<IAccount> => {
 //   const newUser = await addAccount(account);
