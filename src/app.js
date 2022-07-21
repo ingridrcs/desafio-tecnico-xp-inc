@@ -10,4 +10,5 @@ app.use(express.json());
 app.use('/', purchaseAssets);
 app.use('/', accountRoute);
 app.use(errorMiddleware);
+
 module.exports = app;
