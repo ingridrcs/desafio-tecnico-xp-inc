@@ -24,4 +24,19 @@ const addWithdraw = async (codCliente, withdraw) => {
   return finalWithdraw;
 }
 
-module.exports = { getCliente, addWithdraw };
+const addDeposit = async (codCliente, deposit) => {
+  const [getCliente] = await model.getCodCliente(codCliente);
+  const { saldo } = getCliente;
+
+  const saldoFinal = saldo + deposit;
+  await model.update(codCliente, saldoFinal);
+
+  const finalDeposit = {
+    codCliente,
+    saldoFinal,
+  }
+  
+  return finalDeposit;
+}
+
+module.exports = { getCliente, addWithdraw, addDeposit };

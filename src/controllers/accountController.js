@@ -18,4 +18,15 @@ const addWithdraw = async (req, res) => {
   return res.status(201).json(withdrawCliente);
 }
 
-module.exports = { getCodCliente, addWithdraw };
+const addDeposit = async (req, res) => {
+  const { codCliente, deposit } = req.body;
+  const depositClient = await service.addDeposit(codCliente, deposit);
+  
+
+  if (depositClient === null) {
+    return res.status(404).json({ message: "Deposit not efettued" });
+  }
+
+  return res.status(201).json(depositClient);
+}
+module.exports = { getCodCliente, addWithdraw, addDeposit };
