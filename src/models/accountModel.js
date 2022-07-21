@@ -13,4 +13,9 @@ const [client] = await connection.execute('SELECT * FROM TechBank.Accounts WHERE
 console.log(client);
 return client;
 }
-module.exports = getCodCliente;
+const update = async (codCliente, saldo) => {
+  const [client] = await connection.execute(
+    'UPDATE TechBank.Accounts SET saldo = ? WHERE codCliente = ?', [saldo, codCliente]);
+  return client;
+}
+module.exports = { getCodCliente, update };

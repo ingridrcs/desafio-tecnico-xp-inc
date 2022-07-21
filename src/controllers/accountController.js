@@ -1,4 +1,4 @@
-const getCliente = require('../services/accountService')
+const service = require('../services/accountService');
 
 
 // const addAccount = async (req: Request, res: Response):Promise<Response> => {
@@ -13,7 +13,16 @@ const getCliente = require('../services/accountService')
 const getCodCliente = async (req, res) => {
   const codCliente = Number(req.params.codCliente);
   console.log(codCliente);
-  const cliente = await getCliente(codCliente);
-  return res.status(201).json({cliente});
+  const cliente = await service.getCliente(codCliente);
+  return res.status(201).json({ cliente });
 }
-module.exports = getCodCliente;
+
+const addWithdraw = async (req, res) => {
+  const withdraw = await service.addWithdraw(req.body);
+  console.log('controller', withdraw);
+  if (withdraw === null) {
+    return res.status(404).json({ message: "Insuficient funds!" });
+  }
+  return res.status(201).json({ withdraw });
+}
+module.exports = { getCodCliente, addWithdraw };
