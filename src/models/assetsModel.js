@@ -5,4 +5,9 @@ const getByAssets = async (CodAtivo) => {
   return asset;
 }
 
-module.exports = getByAssets;
+const getAllByClients = async (CodCliente) => {
+  const allAssets = await connection.execute('SELECT * FROM TechBank.AssetsClient WHERE CodCliente = ?;', [CodCliente]);
+  return allAssets;
+}
+
+module.exports = { getByAssets, getAllByClients };
