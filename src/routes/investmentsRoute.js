@@ -1,7 +1,8 @@
 const express = require('express');
-const addItens = require('../controllers/investmentsController')
+const controller = require('../controllers/investmentsController')
 const router = express.Router();
+// const purchaseMiddle = require('../middlewares/purchaseMiddleware');
 
-router.post('/investments/purchase', addItens);
+router.post('/investments/purchase', controller);
 
 module.exports = router;
