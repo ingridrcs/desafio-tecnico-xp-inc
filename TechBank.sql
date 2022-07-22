@@ -30,7 +30,7 @@ CREATE TABLE
 
 INSERT INTO
     TechBank.Assets (CodAtivo, QtdeAtivo, Valor)
-VALUES (111, 100, 35.00), (222, 100, 35.00), (333, 100, 35.00);
+VALUES (111, 100, 35.00), (222, 100, 35.00), (333, 100, 35.00), (444, 100, 35.00);
 
 CREATE TABLE
     TechBank.AssetsClient (
