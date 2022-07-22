@@ -6,6 +6,11 @@ const addPurchaseAssets = async (codAtivo, qtdeAtivo, valor) => {
     return withdraw;
 }
 
+const updateAssetsClients = async (codCliente, codAtivo, qtdeAtivo, valor) => {
+  const [purchase] = await connection
+  .execute(
+    'UPDATE TechBank.AssetsClient SET QtdeAtivo = ?, Valor = ? WHERE CodCliente = ? AND CodAtivo = ?', [qtdeAtivo, valor, codCliente, codAtivo]);
+  return purchase;
+}
 
-
-module.exports = addPurchaseAssets;
+module.exports = { addPurchaseAssets, updateAssetsClients };
