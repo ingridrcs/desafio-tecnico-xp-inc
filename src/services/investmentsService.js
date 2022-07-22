@@ -1,4 +1,4 @@
-const modelPurchase = require('../models/investmentsModel');
+const modelInvestments = require('../models/investmentsModel');
 const modelAssets = require('../models/assetsModel');
 
 const addPurchase = async (codCliente, codAtivo, quantity) => {
@@ -10,13 +10,13 @@ const addPurchase = async (codCliente, codAtivo, quantity) => {
       return null;
    }
 
-   await modelPurchase.addPurchaseAssets(codAtivo, qtdeAtivo, Valor);
+   await modelInvestments.addPurchaseAssets(codAtivo, qtdeAtivo, Valor);
 
    const [getClient] = await modelAssets.getAllByClients(codCliente);
 
    const verifyAsset = await getClient.some((asset) => codAtivo === asset.CodAtivo);
    if (verifyAsset === false) {
-      const addAssets = await modelPurchase.addAsset(codCliente, codAtivo, quantity, Valor);
+      const addAssets = await modelInvestments.addAsset(codCliente, codAtivo, quantity, Valor);
       return addAssets;
    }
 
@@ -34,7 +34,7 @@ const addPurchase = async (codCliente, codAtivo, quantity) => {
 
    const { cliente, ativo, quantidade, valor } = getAsset;
 
-   await modelPurchase.updateAssetsClients(cliente, ativo, quantidade, valor);
+   await modelInvestments.updateAssetsClients(cliente, ativo, quantidade, valor);
 
    const purchase = {
       codCliente,
@@ -45,4 +45,13 @@ const addPurchase = async (codCliente, codAtivo, quantity) => {
    return purchase;
 };
 
-module.exports = addPurchase;
+const addSale = async (codCliente, codAtivo, quantity) => {
+   const [getTableAssets] = await modelAssets.getByAssets(codAtivo);
+   const { QtdeAtivo, Valor } = getTableAssets;
+   const qtdeAtivo = (QtdeAtivo + quantity);
+
+   const sale = await modelInvestments.addPurchaseAssets(codAtivo, qtdeAtivo, Valor);
+
+   return sale;
+};
+module.exports = { addPurchase, addSale };

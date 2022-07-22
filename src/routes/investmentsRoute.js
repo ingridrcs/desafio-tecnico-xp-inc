@@ -3,7 +3,7 @@ const controller = require('../controllers/investmentsController')
 const router = express.Router();
 // const purchaseMiddle = require('../middlewares/purchaseMiddleware');
 
-router.post('/investments/purchase', controller);
-router.post('investments/sale');
+router.post('/investments/purchase', controller.addPurchaseAssets);
+router.post('/investments/sale', controller.addSaleAssets);
 
 module.exports = router;
