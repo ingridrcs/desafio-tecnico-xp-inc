@@ -13,4 +13,17 @@ const updateAssetsClients = async (codCliente, codAtivo, qtdeAtivo, valor) => {
   return purchase;
 }
 
-module.exports = { addPurchaseAssets, updateAssetsClients };
+const addAsset = async (CodCliente, CodAtivo, QtdeAtivo, Valor) => {
+  const [row] = await connection
+  .execute('INSERT INTO TechBank.AssetsClient (CodCLiente, CodAtivo, QtdeAtivo, Valor) VALUES (?, ?, ?, ?)', [CodCliente, CodAtivo, QtdeAtivo, Valor]);
+  const newAsset = {
+    id: row.insertId,
+    CodCliente,
+    CodAtivo,
+    QtdeAtivo,
+    Valor,
+  };
+  return newAsset;
+};
+
+module.exports = { addPurchaseAssets, updateAssetsClients, addAsset };
