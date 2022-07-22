@@ -13,12 +13,17 @@ const addPurchase = async (codCliente, codAtivo, quantity) => {
    await modelPurchase.addPurchaseAssets(codAtivo, qtdeAtivo, Valor);
 
    const [getClient] = await modelAssets.getAllByClients(codCliente);
+
+   const verifyAsset = await getClient.some((asset) => codAtivo === asset.CodAtivo);
+   if (verifyAsset === false) {
+      const addAssets = await modelPurchase.addAsset(codCliente, codAtivo, quantity, Valor);
+      return addAssets;
+   }
+
    const [getAsset] = await getClient.filter((asset) => codAtivo === asset.CodAtivo)
       .map((asset) => {
-
          const totalAssets = asset.QtdeAtivo + quantity;
          const totalValue = Number((quantity * Valor)) + Number(asset.Valor);
-
          return {
             cliente: asset.CodCliente,
             ativo: asset.CodAtivo,
@@ -28,6 +33,7 @@ const addPurchase = async (codCliente, codAtivo, quantity) => {
       });
 
    const { cliente, ativo, quantidade, valor } = getAsset;
+
    await modelPurchase.updateAssetsClients(cliente, ativo, quantidade, valor);
 
    const purchase = {
