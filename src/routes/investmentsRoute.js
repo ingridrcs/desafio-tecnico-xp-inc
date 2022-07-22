@@ -4,5 +4,6 @@ const router = express.Router();
 // const purchaseMiddle = require('../middlewares/purchaseMiddleware');
 
 router.post('/investments/purchase', controller);
+router.post('investments/sale');
 
 module.exports = router;
