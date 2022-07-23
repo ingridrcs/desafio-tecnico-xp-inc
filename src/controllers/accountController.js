@@ -2,9 +2,9 @@ const service = require('../services/accountService');
 
 const getCodCliente = async (req, res) => {
   const codCliente = req.params.codCliente;
-  const cliente = await service.getCliente(codCliente);
+  const [cliente] = await service.getCliente(codCliente);
   
-  return res.status(201).json({ cliente });
+  return res.status(201).json(cliente );
 }
 
 const addWithdraw = async (req, res) => {

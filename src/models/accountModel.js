@@ -2,6 +2,7 @@ const connection = require('../db/connection');
 
 const getCodCliente = async (codCliente) => {
   const [client] = await connection.execute('SELECT * FROM TechBank.Accounts WHERE codCliente = ?;', [codCliente]);
+  console.log(client);
   return client;
 }
 
