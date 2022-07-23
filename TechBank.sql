@@ -4,9 +4,13 @@ CREATE SCHEMA IF NOT EXISTS TechBank;
 
 CREATE TABLE
     TechBank.Investments (
-        codCliente INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
+        id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
+        codCliente INTEGER,
         codAtivo INTEGER,
-        qtdeAtivo INTEGER
+        qtdeAtivo INTEGER,
+        FOREIGN KEY (codCliente) REFERENCES Accounts (codCliente) ON DELETE CASCADE,
+        FOREIGN KEY (codAtivo) REFERENCES Assets (CodAtivo) ON DELETE CASCADE
+        FOREIGN KEY (qtdeAtivo) REFERENCES Assets (QtdeAtivo) ON DELETE CASCADE
     ) ENGINE = INNODB;
 
 INSERT INTO
