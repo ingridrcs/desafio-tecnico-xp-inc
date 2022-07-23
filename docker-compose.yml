@@ -19,7 +19,8 @@ services:
     working_dir: /index
     
     volumes:
-
+       
+      
       - ./:/index
     
     depends_on:
@@ -48,6 +49,5 @@ services:
 
 
 networks:
-
+  
   default:
-
