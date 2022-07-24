@@ -35,14 +35,10 @@ const addPurchase = async (codCliente, codAtivo, quantity) => {
    const { cliente, ativo, quantidade, valor } = getAsset;
 
    await modelInvestments.updateAssetsClients(cliente, ativo, quantidade, valor);
+   await modelInvestments.addValueInvestments(cliente, ativo, valor);
+   const list = modelInvestments.getAllInvestments();
 
-   const purchase = {
-      codCliente,
-      codAtivo,
-      qtdeAtivo,
-   }
-
-   return purchase;
+   return list;
 };
 
 const addSale = async (codCliente, codAtivo, quantity) => {
@@ -73,15 +69,11 @@ const addSale = async (codCliente, codAtivo, quantity) => {
    const { cliente, ativo, quantidade, valor } = getAsset;
    await modelInvestments.updateAssetsClients(cliente, ativo, quantidade, valor);
 
-   const saleClient = {
-      codCliente: cliente,
-      codAtivo: ativo,
-      qtdeAtivo: quantidade,
-   }
-
    const qtdeAtivo = (QtdeAtivo + quantity);
   await modelInvestments.addPurchaseAssets(codAtivo, qtdeAtivo, Valor);
+  await modelInvestments.addValueInvestments(cliente, ativo, valor);
+  const list = modelInvestments.getAllInvestments();
 
-   return saleClient;
+   return list;
 };
 module.exports = { addPurchase, addSale };

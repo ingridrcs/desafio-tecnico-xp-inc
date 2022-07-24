@@ -26,4 +26,13 @@ const addAsset = async (CodCliente, CodAtivo, QtdeAtivo, Valor) => {
   return newAsset;
 };
 
-module.exports = { addPurchaseAssets, updateAssetsClients, addAsset };
+const addValueInvestments = async (codCliente, codAtivo, valor) => {
+  const addValue = await connection.execute('UPDATE TechBank.Investments SET valor = ? WHERE codAtivo = ? AND codCliente= ?;', [valor, codAtivo, codCliente]);
+  return addValue;
+}
+
+const getAllInvestments = async() => {
+  const [getAll] = await connection.execute('SELECT * FROM TechBank.Investments;');
+  return getAll;
+}
+module.exports = { addPurchaseAssets, updateAssetsClients, addAsset, addValueInvestments, getAllInvestments };
