@@ -3,21 +3,6 @@ DROP SCHEMA IF EXISTS TechBank;
 CREATE SCHEMA IF NOT EXISTS TechBank;
 
 CREATE TABLE
-    TechBank.Investments (
-        id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
-        codCliente INTEGER,
-        codAtivo INTEGER,
-        qtdeAtivo INTEGER,
-        FOREIGN KEY (codCliente) REFERENCES Accounts (codCliente) ON DELETE CASCADE,
-        FOREIGN KEY (codAtivo) REFERENCES Assets (CodAtivo) ON DELETE CASCADE
-        FOREIGN KEY (qtdeAtivo) REFERENCES Assets (QtdeAtivo) ON DELETE CASCADE
-    ) ENGINE = INNODB;
-
-INSERT INTO
-    TechBank.Investments (codAtivo, qtdeAtivo)
-VALUES (100, 100), (101, 100), (102, 100);
-
-CREATE TABLE
     TechBank.Accounts (
         codCliente INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
         saldo INTEGER 
@@ -68,3 +53,17 @@ CREATE TABLE
 INSERT INTO
     TechBank.User (email, senha, codCliente)
 VALUES ("ingrid@gmail.com", 125587, 1), ("artur@gmail.com", 654321, 2), ("luciana@gmail.com", 457895, 3), ("mario@gmail.com", 156489, 4);
+
+CREATE TABLE
+    TechBank.Investments (
+        id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
+        codCliente INTEGER,
+        codAtivo INTEGER,
+        valor DECIMAL,
+        FOREIGN KEY (codCliente) REFERENCES Accounts (codCliente) ON DELETE CASCADE,
+        FOREIGN KEY (codAtivo) REFERENCES AssetsClient (CodAtivo) ON DELETE CASCADE
+    ) ENGINE = INNODB;
+
+INSERT INTO
+    TechBank.Investments (codCliente, codAtivo, valor)
+VALUES (1, 111, 0.00, 3000.00), (1, 222, 0.00, 3500.00), (2, 333, 0.00, 1500.00), (2, 111, 0.00, 300.00), (3, 444, 0.00, 2000.00), (4, 222, 0.00, 350.00);
