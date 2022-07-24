@@ -12,7 +12,7 @@ res.locals.user = user;
 next();
 } catch (error) {
     console.log(error);
-    return res.status(401).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 module.exports = authenticateMiddleware;
