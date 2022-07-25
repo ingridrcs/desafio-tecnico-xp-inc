@@ -22,13 +22,6 @@ const loginMiddle = require('../middlewares/loginMiddleware');
 //  *           properties:
 //  *              token:
 //  *                  type: string
-//  *              email:
-//  *                  type: string
-//  *              password:
-//  *                  type: string
-//  *           examples:
-//  *              email: ingrid@gmail.com
-//  *              password: 123456
 //  */
 
 // /**
