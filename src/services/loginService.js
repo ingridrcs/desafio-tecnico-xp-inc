@@ -8,6 +8,7 @@ const authenticate = async ({ email, password }) => {
   }
 
   const [userLogin] = await getEmail(email);
+  console.log('user',userLogin);
   const { senha } = userLogin;
 
   if (Number(senha) !== password) {
@@ -16,6 +17,7 @@ const authenticate = async ({ email, password }) => {
   }
 
   const tokenUser = generateJWTToken(email);
+  console.log(tokenUser);
   return tokenUser;
 };
 

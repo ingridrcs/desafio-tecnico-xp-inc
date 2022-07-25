@@ -3,7 +3,7 @@ const service = require('../services/assetsService');
 const getByAssets = async (req, res) => {
   const codByAsset = req.params.CodAtivo;
   const [asset] = await service.getByAssets(codByAsset);
-  
+ console.log('asset',asset);
   return res.status(201).json(asset);
 }
 

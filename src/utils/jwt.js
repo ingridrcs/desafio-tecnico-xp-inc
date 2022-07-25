@@ -9,6 +9,7 @@ const jwtConfig = {
 
 const generateJWTToken = (email) => {
   const token = jwt.sign({ email }, TOKEN_SECRET, jwtConfig);
+  console.log('token', token);
   return token;
 };
 

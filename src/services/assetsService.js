@@ -2,6 +2,7 @@ const model = require('../models/assetsModel');
 
 const getByAssets = async (CodAtivo) => {
   const asset = await model.getByAssets(CodAtivo);
+  console.log(asset);
   return asset;
 }
 
