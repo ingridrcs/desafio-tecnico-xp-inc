@@ -6,7 +6,7 @@ const swaggerConfig = {
       description:"Api utilizando express documentada pelo swagger para o desafio XP",
       version: "1.0"
     },
-    server: [{
+    servers: [{
     url: "http://localhost:3000",
     description: "localhost"
   }]
