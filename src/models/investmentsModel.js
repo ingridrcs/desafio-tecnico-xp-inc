@@ -33,7 +33,6 @@ const addValueInvestments = async (codCliente, codAtivo, valor) => {
 
 const getAllInvestments = async() => {
   const [getAll] = await connection.execute('SELECT * FROM TechBank.Investments;');
-  console.log(getAll);
   return getAll;
 }
 module.exports = { addPurchaseAssets, updateAssetsClients, addAsset, addValueInvestments, getAllInvestments };
